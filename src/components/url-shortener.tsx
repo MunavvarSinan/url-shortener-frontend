@@ -33,6 +33,7 @@ export function UrlShortener({ onUrlAdded }: UrlShortenerProps) {
                 toast.error(response.message || 'Something went wrong');
             }
         } catch (error) {
+            console.error('Error shortening URL:', error);
             toast.error('Failed to shorten URL');
         } finally {
             setIsLoading(false);

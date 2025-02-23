@@ -62,6 +62,7 @@ export async function getUrls(): Promise<ShortenedUrl[]> {
         const data = await res.json()
         return data.data as ShortenedUrl[] || []
     } catch (error) {
+        console.error('Error getting URLs:', error)
         return []
     }
 }
@@ -79,6 +80,7 @@ export async function deleteUrl(id: string) {
         revalidatePath("/")
         return { success: true }
     } catch (error) {
+        console.error('Error deleting URL:', error)
         return { success: false, message: "Failed to delete URL" }
     }
 }

@@ -1,11 +1,14 @@
+// src/app/url/[shortCode]/page.tsx
 import { redirect } from "next/navigation";
 
-export default function RedirectPage({ params }: { params: { shortCode: string } }) {
-    // Ensure params is correctly passed
-    if (!params?.shortCode) {
-        return <h1>Invalid URL</h1>;
+export default async function RedirectPage({ params }: { params: Promise<{ shortCode: string }> }) {
+    const { shortCode } = await params; // Await the params to resolve the Promise
+
+    if (!shortCode) {
+        return null; // No UI needed since we're redirecting
     }
 
+    redirect(`${process.env.NEXT_PUBLIC_BACKEND_URL}/url/${shortCode}`);
 
-    redirect(`${process.env.NEXT_PUBLIC_BACKEND_URL}/url/${params.shortCode}`);
+    return null; // This prevents React from expecting JSX
 }
