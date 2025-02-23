@@ -3,7 +3,7 @@
 import { jwtVerify } from 'jose';
 import { cookies } from 'next/headers';
 
-const SECRET_KEY = process.env.SECRET_KEY || 'dev-secret-key'; // Must match backend secret
+const SECRET_KEY = process.env.SECRET_KEY || 'url-shortener-secert123@123'; // Must match backend secret
 const key = new TextEncoder().encode(SECRET_KEY);
 
 interface SessionPayload {
@@ -33,7 +33,6 @@ export async function getSession(): Promise<SessionPayload | null> {
     if (!token) return null;
 
     try {
-        // Verify the token using the same secret as the backend
         const { payload } = await jwtVerify(token, key, { algorithms: ['HS256'] });
         return { userId: payload.id as number, token };
     } catch (error) {

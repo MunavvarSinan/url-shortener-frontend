@@ -4,7 +4,7 @@ import { createSession, deleteSession } from '@/lib/auth';
 import type { SignUpInput, SignInInput } from './schema';
 import { redirect } from 'next/navigation';
 
-const API_BASE_URL = 'http://localhost:8000/api/v1/auth';
+const API_BASE_URL = `https://url-shortener-api.duckdns.org/api/v1/auth`;
 
 
 
@@ -27,7 +27,7 @@ export async function signUp({ email, password, username }: SignUpInput) {
     }
 
     await createSession(data.token);
-    return data;
+    return { message: 'Account created successfully!' };
 }
 
 
@@ -50,7 +50,7 @@ export async function signIn({ email, password }: SignInInput) {
     }
     // Store session (example, modify based on your auth system)
     await createSession(data.data.token);
-    return data;
+    return { message: 'Signed in successfully!' };
 }
 
 

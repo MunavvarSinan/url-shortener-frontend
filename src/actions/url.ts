@@ -3,7 +3,7 @@
 import { getSession } from "@/lib/auth"
 import { revalidatePath } from "next/cache"
 
-const API_BASE = "http://localhost:8000/api/v1"
+const API_BASE = 'https://url-shortener-api.duckdns.org/api/v1';
 
 export type ShortenedUrl = {
     id: string;
