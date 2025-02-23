@@ -1,36 +1,131 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# URL Shortener - Frontend
 
-## Getting Started
+![Next.js](https://img.shields.io/badge/Next.js-13-blue.svg)
+![TypeScript](https://img.shields.io/badge/TypeScript-✔-blue.svg)
+![ShadCN UI](https://img.shields.io/badge/ShadCN%20UI-%F0%9F%94%A5-red.svg)
+![Bun](https://img.shields.io/badge/Bun-%F0%9F%8D%AC-yellow.svg)
 
-First, run the development server:
+A modern **URL Shortener Web Application** built with **Next.js, TypeScript, NextAuth v3, ShadCN UI, and Bun**.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+---
+
+## 🚀 Tech Stack
+
+- **Next.js** – React Framework
+- **TypeScript** – Type-safe JavaScript
+- **Bun** – Fast JavaScript runtime
+- **NextAuth v5** – Authentication & Authorization
+- **ShadCN UI** – Modern UI components
+- **Tailwind CSS** – Utility-first styling
+- **React Hook Form** – Form handling & validation
+
+---
+
+## 📂 Project Structure
+
+```
+/src
+  ├── actions/ (Server actions for async logic)
+  ├── app/
+  │   ├── layout.tsx (Root layout)
+  │   ├── page.tsx (Landing Page)
+  │   ├── dashboard.tsx (User Dashboard)
+  ├── components/ (Reusable UI components)
+  ├── lib/ (Utility functions)
+  ├── middleware.ts (Route protection)
+  ├── store/ (Zustand State Management)
+  ├── styles/ (Global styles)
+  ├── types/ (TypeScript interfaces)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+---
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🛠️ Setup & Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### 1️⃣ Clone the Repository
 
-## Learn More
+```sh
+git clone <repo-url>
+cd <repo-folder>
+```
 
-To learn more about Next.js, take a look at the following resources:
+### 2️⃣ Install Dependencies
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+```sh
+bun install  # Using Bun
+```
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+### 3️⃣ Configure Environment Variables
 
-## Deploy on Vercel
+Create a `.env.local` file and add:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+```ini
+NEXTAUTH_URL=http://localhost:3000
+NEXTAUTH_SECRET=your-secret-key
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+DATABASE_URL=postgres://postgres:password@localhost:5432/url-shortener
+API_BASE_URL=http://localhost:8000  # Backend API
+```
+
+### 4️⃣ Run the Development Server
+
+```sh
+bun dev  # Runs on http://localhost:3000
+```
+
+---
+
+## 🔑 Authentication
+
+- Uses **NextAuth v3** for authentication
+- Supports **Google, GitHub, and Credentials-based login**
+- Protects dashboard routes with `getServerSideProps`
+
+---
+
+## 🎨 UI & Styling
+
+- Uses **ShadCN UI** for components
+- Dark mode support (via Tailwind CSS)
+- Custom **loading & toast notifications**
+
+---
+
+## 🖥️ API Routes
+
+| Method   | Endpoint           | Description                  |
+| -------- | ------------------ | ---------------------------- |
+| `POST`   | `/api/url/shorten` | Shorten a URL                |
+| `GET`    | `/api/url`         | Get all user-shortened URLs  |
+| `DELETE` | `/api/url/:id`     | Delete a URL                 |
+| `GET`    | `/:shortCode`      | Redirect to the original URL |
+
+---
+
+## ✅ Running Tests
+
+```sh
+bun test  # Runs unit tests
+```
+
+---
+
+## 📦 Deployment
+
+### 1️⃣ Build for Production
+
+```sh
+bun build
+```
+
+### 2️⃣ Deploy on Vercel
+
+```sh
+vercel deploy
+```
+
+---
+
+## 📖 License
+
+MIT License
